@@ -1,0 +1,115 @@
+*swordfish.txt* Toggle native Neovim strikethrough annotations
+
+===============================================================================
+CONTENTS                                                             *swordfish*
+
+Introduction .................................................... |swordfish-intro|
+Setup ........................................................... |swordfish-setup|
+Commands ......................................................... |swordfish-commands|
+Export .......................................................... |swordfish-export|
+Mappings ......................................................... |swordfish-mappings|
+API ............................................................. |swordfish-api|
+
+===============================================================================
+INTRODUCTION                                                     *swordfish-intro*
+
+Swordfish adds strikethrough annotations using extmarks and Neovim's native
+|hl-strikethrough| highlight attribute. It never changes the contents of a
+buffer.
+
+The annotation follows its text when the buffer is edited. Normal, visual-line,
+visual-character, and visual-block selections are supported.
+
+===============================================================================
+SETUP                                                             *swordfish-setup*
+
+Swordfish loads with default settings. To customize it, call:
+
+    require("swordfish").setup({
+      highlight = "SwordfishStrikeThrough",
+      commands = true,
+      keymaps = {
+        normal = "<leader>co",
+        visual = "<leader>co",
+      },
+    })
+
+The default highlight group has |hl-strikethrough| enabled. Additional highlight
+attributes can be supplied through the |swordfish-config| `highlight_opts` field.
+
+                                                            *swordfish-config*
+                                                        *swordfish-configuration*
+                                                            *swordfish-options*
+`highlight`                                             (string)
+    Highlight group used for annotations. Default: "SwordfishStrikeThrough".
+
+`highlight_opts`                                         (table)
+    Additional options passed to |nvim_set_hl|.
+
+`commands`                                                (boolean)
+    Create user commands. Default: true.
+
+`keymaps`                                                  (table|false)
+    Configure the normal and visual mappings, or set false to disable them.
+
+===============================================================================
+COMMANDS                                                         *swordfish-commands*
+
+:SwordfishStrike
+    Add strikethrough to the current line.
+
+:SwordfishUnstrike
+    Remove strikethrough from the current line.
+
+:SwordfishStrikeSelected
+    Add strikethrough to the last visual selection. Visual-block selections are
+    supported. This command can be entered after leaving visual mode with `:`.
+
+:SwordfishUnstrikeSelected
+    Remove strikethrough from the last visual selection.
+
+===============================================================================
+EXPORT                                                             *swordfish-export*
+
+:SwordfishWrite[!] [file]
+    Write a text representation of the current buffer. Struck characters are
+    followed by U+0336 COMBINING LONG STROKE OVERLAY. The current buffer and its
+    native annotations are not changed. Without a filename, the current buffer
+    filename is used. `!` is required to overwrite an existing file.
+
+===============================================================================
+MAPPINGS                                                         *swordfish-mappings*
+
+The default mapping is |<leader>co| in normal and visual mode. It can be
+disabled with `keymaps = false` and replaced with custom mappings using the Lua
+API.
+
+===============================================================================
+API                                                                 *swordfish-api*
+
+                                                          *swordfish.strike_line*
+strike_line()
+    Add strikethrough to the current line.
+
+                                                        *swordfish.unstrike_line*
+unstrike_line()
+    Remove strikethrough from the current line.
+
+                                                        *swordfish.toggle_line*
+toggle_line()
+    Toggle strikethrough on the current line.
+
+                                                       *swordfish.strike_visual*
+strike_visual()
+    Add strikethrough to the active visual selection and leave visual mode.
+
+                                                     *swordfish.unstrike_visual*
+unstrike_visual()
+    Remove strikethrough from the active visual selection and leave visual mode.
+
+                                                      *swordfish.toggle_visual*
+toggle_visual()
+    Toggle strikethrough on the current visual selection and leave visual mode.
+
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:

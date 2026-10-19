@@ -1,0 +1,17 @@
+swordfish	swordfish.txt	/*swordfish*
+swordfish-api	swordfish.txt	/*swordfish-api*
+swordfish-commands	swordfish.txt	/*swordfish-commands*
+swordfish-config	swordfish.txt	/*swordfish-config*
+swordfish-configuration	swordfish.txt	/*swordfish-configuration*
+swordfish-export	swordfish.txt	/*swordfish-export*
+swordfish-intro	swordfish.txt	/*swordfish-intro*
+swordfish-mappings	swordfish.txt	/*swordfish-mappings*
+swordfish-options	swordfish.txt	/*swordfish-options*
+swordfish-setup	swordfish.txt	/*swordfish-setup*
+swordfish.strike_line	swordfish.txt	/*swordfish.strike_line*
+swordfish.strike_visual	swordfish.txt	/*swordfish.strike_visual*
+swordfish.toggle_line	swordfish.txt	/*swordfish.toggle_line*
+swordfish.toggle_visual	swordfish.txt	/*swordfish.toggle_visual*
+swordfish.txt	swordfish.txt	/*swordfish.txt*
+swordfish.unstrike_line	swordfish.txt	/*swordfish.unstrike_line*
+swordfish.unstrike_visual	swordfish.txt	/*swordfish.unstrike_visual*
