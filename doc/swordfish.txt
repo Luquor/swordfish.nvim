@@ -4,11 +4,13 @@
 CONTENTS                                                             *swordfish*
 
 Introduction .................................................... |swordfish-intro|
+Installation .................................................... |swordfish-installation|
 Setup ........................................................... |swordfish-setup|
 Commands ......................................................... |swordfish-commands|
 Export .......................................................... |swordfish-export|
 Mappings ......................................................... |swordfish-mappings|
 API ............................................................. |swordfish-api|
+License .......................................................... |swordfish-license|
 
 ===============================================================================
 INTRODUCTION                                                     *swordfish-intro*
@@ -19,6 +21,16 @@ buffer.
 
 The annotation follows its text when the buffer is edited. Normal, visual-line,
 visual-character, and visual-block selections are supported.
+
+===============================================================================
+INSTALLATION                                                 *swordfish-installation*
+
+With |lazy.nvim|:
+
+    {
+      "luquor/swordfish.nvim",
+      opts = {},
+    }
 
 ===============================================================================
 SETUP                                                             *swordfish-setup*
@@ -35,7 +47,13 @@ Swordfish loads with default settings. To customize it, call:
     })
 
 The default highlight group has |hl-strikethrough| enabled. Additional highlight
-attributes can be supplied through the |swordfish-config| `highlight_opts` field.
+attributes can be supplied through the |swordfish-config| `highlight_opts` field:
+
+    require("swordfish").setup({
+      highlight_opts = {
+        foreground = "#888888",
+      },
+    })
 
                                                             *swordfish-config*
                                                         *swordfish-configuration*
@@ -82,7 +100,16 @@ MAPPINGS                                                         *swordfish-mapp
 
 The default mapping is |<leader>co| in normal and visual mode. It can be
 disabled with `keymaps = false` and replaced with custom mappings using the Lua
-API.
+API:
+
+    local swordfish = require("swordfish")
+
+    vim.keymap.set("n", "<leader>x", swordfish.toggle_line, {
+      desc = "Toggle strikethrough",
+    })
+    vim.keymap.set("x", "<leader>x", swordfish.toggle_visual, {
+      desc = "Toggle strikethrough",
+    })
 
 ===============================================================================
 API                                                                 *swordfish-api*
@@ -107,9 +134,23 @@ strike_visual()
 unstrike_visual()
     Remove strikethrough from the active visual selection and leave visual mode.
 
+                                                     *swordfish.strike_selected*
+strike_selected()
+    Add strikethrough to the last visual selection.
+
+                                                   *swordfish.unstrike_selected*
+unstrike_selected()
+    Remove strikethrough from the last visual selection.
+
                                                       *swordfish.toggle_visual*
 toggle_visual()
     Toggle strikethrough on the current visual selection and leave visual mode.
+
+===============================================================================
+LICENSE                                                           *swordfish-license*
+
+Swordfish is licensed under the Apache License 2.0. See the repository's
+LICENSE file for the complete text.
 
 ==============================================================================
  vim:tw=78:ts=8:ft=help:norl:
