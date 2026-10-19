@@ -50,7 +50,7 @@ require("swordfish").setup({
   highlight = "SwordfishStrikeThrough",
   highlight_opts = {
     -- Additional highlight attributes can be added here.
-    -- foreground = "#888888",
+    fg = "#888888",
   },
   commands = true,
   keymaps = {
