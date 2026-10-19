@@ -51,7 +51,7 @@ attributes can be supplied through the |swordfish-config| `highlight_opts` field
 
     require("swordfish").setup({
       highlight_opts = {
-        foreground = "#888888",
+        fg = "#888888",
       },
     })
 

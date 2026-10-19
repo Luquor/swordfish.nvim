@@ -141,6 +141,11 @@ function M.setup(opts)
 		default = true,
 		strikethrough = true,
 	}, config.highlight_opts)
+	-- The plugin entrypoint installs defaults before lazy.nvim applies `opts`.
+	-- Explicit highlight options must be allowed to replace that definition.
+	if opts and opts.highlight_opts ~= nil then
+		highlight_opts.default = false
+	end
 	vim.api.nvim_set_hl(0, config.highlight, highlight_opts)
 
 	delete_installed_keymaps()
